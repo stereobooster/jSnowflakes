@@ -4,6 +4,8 @@
 
 Code based on [Zeptojs demo](http://zeptojs.com/let-it-snow/) and [jQuery Boilerplate](//github.com/zenorocha/jquery-boilerplate/)
 
+## Demo
+
 [Demo](http://stereobooster.github.com/jSnowflakes), [Demo with rotation](http://stereobooster.github.com/jSnowflakes/demo-rotate.html)
 
 ## Usage
@@ -34,13 +36,13 @@ To set amount of snowflakes (default 60)
 $('#main').snow(60);
 ```
 
-To set sky color
+To set sky color depending on time
 
 ```javascript
 $('#main').snow(true);
 ```
 
-or
+To set sky color to definite hour
 
 ```javascript
 $('#main').snow({
@@ -54,13 +56,21 @@ $('#main').snow({
  
   - [jSnow](http://archive.plugins.jquery.com/project/jSnow)
   - [snowfall](//github.com/loktar00/JQuery-Snowfall)
+    - Snowflakes: div with background color
+    - Cool feature: snow collecting on surfaces
 
 ### Other
 
   - [Google](https://www.google.com/search?q=Let+It+Snow)
+    - Cool feature: frosting glass effect
   - [Microsoft](http://ie.microsoft.com/testdrive/performance/letitsnow/)
   - [Zepto](http://zeptojs.com/let-it-snow/)
+    - Snowflakes: utf-8 symbols
   - [designshack](http://designshack.net/articles/css/make-it-snow-on-your-website-with-css-keyframe-animations/)
+    - Snowflakes: png
+  - [badassjs](http://badassjs.com/happy-holidays)
+    - Snowflakes: svg
+  - http://natbat.net/code/clientside/css/snowflakes/
 
 ## TODO
 
