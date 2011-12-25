@@ -15,7 +15,7 @@
             ['10152b', '0c131d'],
             ['111f42', '10172a'],
             ['192b4f', '111f39'],
-            [':[3e6b', '1f2d50'],
+            ['233e6b', '1f2d50'],
             ['3162a7', '244072'],
             ['5383c5', '3f66ab'],
             ['69b0e4', '5590c8'],
@@ -50,65 +50,100 @@
     };
 
     function Plugin( element, options ) {
-        this.element = element;
+        this.element = $(element);
         if (options === true) {
             options = {sky: true};
         }
         if (typeof options == 'number') {
             options = {count: options};
         }
-        if (options == 'clear') {
-            //TODO
-        }
-        options = $.extend({}, defaults, options);
-        if (options.hour == undefined) {
-            options.hour = (new Date).getHours();
-        }
-        this.options = options;
+        this.options = $.extend({}, defaults, options);
         this.init();
     }
 
     Plugin.prototype.init = function () {
-        var i = this.options.hour,
-            layer = $(this.element),
-            style = 'overflow: hidden; color: #fff;';
-            if (this.options.sky) {
+        var that = this;
+
+        function updateSkyColor() {
+            var timeout = (60 - (new Date).getMinutes()) * 60 + 1,
+                i = that.options.hour,
+                layer = that.element,
+                style = 'overflow: hidden; color: #fff;';
+
+            if (i == undefined) {
+                i = (new Date).getHours();
+            }
+            if (that.options.sky && i >= 0 && i <= 23) {
                 style += gradient(color[i][0], color[i][1]);
             }
-
-            i = this.options.count;
             layer.attr('style', style);
 
-        function addFlake(){
-            var el = $('<div>' + glyphs[rand(glyphs.length)] + '</div>');
-            layer.append(el);
-            el.css({ 
-                left: rand(100) + '%',
-                top: -100 - rand(500),
-                fontSize: 20 + rand(30),
-                position: 'absolute'
-            });
-            el.animate({ 
-                    top: innerHeight*2 + rand(innerHeight/2) + 'px', 
-                    left: '+=' + 50 - rand(100) + 'px', 
-                    rotate: '+=' + (2e3 - rand(4e3)) + 'deg'
-                }, 
-                (6 + rand(10)) * 1000, 
-                'linear', 
-                function(){
-                    addFlake();
-                    el.remove();
-                }
-            );
+            if (that.options.sky && that.options.hour == undefined) {
+                setTimeout(updateSkyColor, timeout * 1000);
+            }
         }
 
-        while(i--) setTimeout(addFlake, rand(6e3));
+        updateSkyColor();
     };
+
+    Plugin.prototype.start = function () {
+        if (!this.active) {
+            this.active = true;
+            var i = this.options.count,
+                layer = this.element,
+                that = this;
+
+            function addFlake(){
+                var el = $('<div>' + glyphs[rand(glyphs.length)] + '</div>');
+                layer.append(el);
+                el.css({ 
+                    left: rand(100) + '%',
+                    top: -100 - rand(500),
+                    fontSize: 20 + rand(30),
+                    position: 'absolute'
+                });
+                el.animate({ 
+                        top: innerHeight*2 + rand(innerHeight/2) + 'px', 
+                        left: '+=' + 50 - rand(100) + 'px', 
+                        rotate: '+=' + (2e3 - rand(4e3)) + 'deg'
+                    }, 
+                    (6 + rand(10)) * 1000, 
+                    'linear', 
+                    function(){
+                        if (that.active) {
+                            addFlake();    
+                        }
+                        el.remove();
+                    }
+                );
+            }
+
+            while(i-- && this.active) setTimeout(addFlake, rand(6e3));
+        }
+    }
+
+    Plugin.prototype.stop = function () {
+        this.active = false;
+    }
+
+    Plugin.prototype.clear = function () {
+        this.element.find('div').remove();
+    }
 
     $.fn[pluginName] = function ( options ) {
         return this.each(function () {
-            if (!$.data(this, 'plugin_' + pluginName)) {
-                $.data(this, 'plugin_' + pluginName, new Plugin( this, options ));
+            var plug = $.data(this, 'plugin_' + pluginName);
+            if (!plug) {
+                plug = new Plugin( this, options );
+                $.data(this, 'plugin_' + pluginName, plug);
+            }
+            if (options == 'stop'){
+                plug.stop();
+            } else if (options == 'clear') {
+                plug.stop();
+                plug.clear();
+            } else {
+                plug.start();
             }
         });
     }

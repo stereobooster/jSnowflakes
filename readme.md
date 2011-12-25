@@ -44,6 +44,6 @@ $(function(){
 
 ## TODO
 
-  - add clear function
   - add more options
   - add "mobile" snowflakes
+  - add demo pages
