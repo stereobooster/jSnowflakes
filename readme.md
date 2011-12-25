@@ -4,6 +4,8 @@
 
 Code based on [Zeptojs demo](http://zeptojs.com/let-it-snow/) and [jQuery Boilerplate](//github.com/zenorocha/jquery-boilerplate/)
 
+[Demo](http://stereobooster.github.com/jSnowflakes)
+
 ## Usage
 
 Add jQuery and Snowfall
@@ -46,4 +48,3 @@ $(function(){
 
   - add more options
   - add "mobile" snowflakes
-  - add demo pages
