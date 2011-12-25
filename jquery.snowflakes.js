@@ -1,4 +1,5 @@
 /**
+ ^ jSnowflakes v0.01
  * https://github.com/stereobooster/jSnowflakes
  */
 ;(function ($, undefined) {
@@ -40,25 +41,29 @@
     function rand(max){ return Math.floor(Math.random()*max); }
 
     function gradient(end, start) {
-        return 'background: #'+start+';'+
-            'background: -moz-linear-gradient(top,  #'+start+' 0%, #'+end+' 100%);'+
+        return 'background: #'+start+';'+(end == start ? '' :
+            ('background: -moz-linear-gradient(top,  #'+start+' 0%, #'+end+' 100%);'+
             'background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#'+start+'), color-stop(100%,#'+end+'));'+
             'background: -webkit-linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);'+
             'background: -o-linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);'+
             'background: -ms-linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);'+
-            'background: linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);';
+            'background: linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);'));
     };
 
     function Plugin( element, options ) {
         this.element = $(element);
         if (options === true) {
             options = {sky: true};
-        }
-        if (typeof options == 'number') {
+        } else if (typeof options == 'number') {
             options = {count: options};
+        } else if (options) {
+            options.sky = options.sky || (
+                typeof options.hour == 'number' 
+                && options.hour >= 0 
+                && options.hour <= 23
+            );
         }
         this.options = $.extend({}, defaults, options);
-        this.options.sky = !!this.options.hour;
         this.init();
     }
 
