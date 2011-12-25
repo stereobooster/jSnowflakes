@@ -8,11 +8,6 @@
       body { margin:0 }
       #main {
 		background: #3f66ab;
-		background: -moz-linear-gradient(top,  #3f66ab 0%, #5383c5 100%);
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3f66ab), color-stop(100%,#5383c5));
-		background: -webkit-linear-gradient(top,  #3f66ab 0%,#5383c5 100%);
-		background: -o-linear-gradient(top,  #3f66ab 0%,#5383c5 100%);background: -ms-linear-gradient(top,  #3f66ab 0%,#5383c5 100%);
-		background: linear-gradient(top,  #3f66ab 0%,#5383c5 100%);
 		width: 100%; 
 		height: 100%; 
 		position: absolute}
@@ -26,7 +21,7 @@
 <script src="jquery-animate-css-rotate-scale.js"></script>
 <script>
 $(function(){
-    $('#main').snowfall(10);
+    $('#main').snow(true);
 });
 </script>
 </body>
