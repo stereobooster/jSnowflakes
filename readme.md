@@ -1,5 +1,4 @@
-
-# jSnowflakes
+![jSnowflakes](//github.com/stereobooster/jSnowflakes/raw/master/jsnowflakes.png)
 
 ## Acknowledgements
 
@@ -20,6 +19,8 @@ For rotation support add [jQuery patch](//github.com/zachstronaut/jquery-animate
 <script src="jquery-css-transform.js"></script>
 <script src="jquery-animate-css-rotate-scale.js"></script>
 ```
+
+To start snow use `snow` function
 
 ```javascript
 $(function(){
