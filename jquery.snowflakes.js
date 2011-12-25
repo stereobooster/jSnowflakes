@@ -58,6 +58,7 @@
             options = {count: options};
         }
         this.options = $.extend({}, defaults, options);
+        this.options.sky = !!this.options.hour;
         this.init();
     }
 

@@ -4,7 +4,7 @@
 
 Code based on [Zeptojs demo](http://zeptojs.com/let-it-snow/) and [jQuery Boilerplate](//github.com/zenorocha/jquery-boilerplate/)
 
-[Demo](http://stereobooster.github.com/jSnowflakes)
+[Demo](http://stereobooster.github.com/jSnowflakes), [Demo with rotation](http://stereobooster.github.com/jSnowflakes/demo-rotate.html)
 
 ## Usage
 
@@ -25,8 +25,26 @@ For rotation support add [jQuery patch](//github.com/zachstronaut/jquery-animate
 To start snow use `snow` function
 
 ```javascript
-$(function(){
-    $('#main').snow();
+$('#main').snow();
+```
+
+To set amount of snowflakes (default 60)
+
+```javascript
+$('#main').snow(60);
+```
+
+To set sky color
+
+```javascript
+$('#main').snow(true);
+```
+
+or
+
+```javascript
+$('#main').snow({
+  hour: 8
 });
 ```
 
