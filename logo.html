@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Demo Snowfall</title>
+    <link href='http://fonts.googleapis.com/css?family=Mr+Bedford' rel='stylesheet' type='text/css'>
     <style>
 		body { margin:0 }
 		#main {
@@ -12,30 +13,29 @@
 			height: 100%;
 			position: absolute
 		}
+		#logo {
+			text-shadow: 0px 0px 10px #68afe5;
+			font-family: 'Mr Bedford', cursive;
+			font-smooth: always;
+			color:#fff;
+			font-size: 150px;
+			position: absolute;
+			top:0;
+			height:200px;
+			width:100%;
+			z-index:100;
+			text-align: center;
+		}
     </style>
 </head>
 <body>
-<div>
-	<input type="button" value="Start" />
-	<input type="button" value="Stop" />
-	<input type="button" value="Clear" />
-	<a href="https://github.com/stereobooster/jSnowflakes">jSnowflakes</a> Demo
-</div>
+<div id="logo">jSnowflakes</div>
 <div id="main"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="jquery.snowflakes.js"></script>
 <script>
 $(function(){
-	$('#main').snow(true);
-	$('[value=Start]').click(function(){
-    	$('#main').snow(true);	
-    });
-    $('[value=Stop]').click(function(){
-    	$('#main').snow('stop');	
-    });
-    $('[value=Clear]').click(function(){
-    	$('#main').snow('clear');	
-    });
+    $('#main').snow(true);
 });
 </script>
 </body>
