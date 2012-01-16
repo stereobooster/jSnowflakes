@@ -1,11 +1,12 @@
 /**
- ^ jSnowflakes v0.01
+ * jSnowflakes v0.02
  * https://github.com/stereobooster/jSnowflakes
  */
 ;(function ($, undefined) {
 
     var pluginName = 'snow',
         glyphs = ('❄❅❆').split(''), //'+*×'
+        //glyphs = ('✲✱✳✴✶✷✸✹✺✻✼❉❊❋✢✥✧✕☓').split(''),
         defaults = {
             count: 60,
             sky: false,
@@ -47,7 +48,8 @@
             'background: -webkit-linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);'+
             'background: -o-linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);'+
             'background: -ms-linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);'+
-            'background: linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);'));
+            'background: linear-gradient(top,  #'+start+' 0%,#'+end+' 100%);' + 
+            'filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#' + start + '", endColorstr="#' + end + '",GradientType=0 );'));
     };
 
     function Plugin( element, options ) {
@@ -74,7 +76,7 @@
             var timeout = (60 - (new Date).getMinutes()) * 60 + 1,
                 i = that.options.hour,
                 layer = that.element,
-                style = 'overflow: hidden; color: #fff;';
+                style = 'overflow:hidden;color:#fff;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;';
 
             if (i == undefined) {
                 i = (new Date).getHours();
@@ -97,7 +99,8 @@
             this.active = true;
             var i = this.options.count,
                 layer = this.element,
-                that = this;
+                that = this,
+                innerHeight = this.element.innerHeight();
 
             function addFlake(){
                 var el = $('<div>' + glyphs[rand(glyphs.length)] + '</div>');

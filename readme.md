@@ -71,6 +71,11 @@ $('#main').snow({
   - [badassjs](http://badassjs.com/happy-holidays)
     - Snowflakes: svg
   - http://natbat.net/code/clientside/css/snowflakes/
+  - http://ocelotdev.ru/
+
+## Christmas tree
+
+  - http://hakim.se/experiments/css/domtree/
 
 ## TODO
 
