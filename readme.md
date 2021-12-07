@@ -6,7 +6,7 @@ Code based on [Zeptojs demo](http://zeptojs.com/let-it-snow/) and [jQuery Boiler
 
 ## Demo
 
-[Demo](http://stereobooster.github.com/jSnowflakes), [Demo with rotation](http://stereobooster.github.com/jSnowflakes/demo-rotate.html)
+[Demo](http://stereobooster.github.io/jSnowflakes), [Demo with rotation](http://stereobooster.github.io/jSnowflakes/demo-rotate.html)
 
 ## Usage
 
